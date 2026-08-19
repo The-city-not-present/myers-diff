@@ -1,4 +1,4 @@
-const Splitter = require('./splitter');
+import Splitter from './splitter';
 
 function getDefaultSettings() {
 	return {
@@ -263,10 +263,10 @@ class Myers {
 		else {
 			const { x, y } = Myers.getShortestMiddleSnake(
 				lhsCtx, lhsLower, lhsUpper,
-				rhsCtx, rhsLower, rhsUpper, 
+				rhsCtx, rhsLower, rhsUpper,
 				vectorU, vectorD);
 			Myers.getLongestCommonSubsequence(
-				lhsCtx, lhsLower, x, 
+				lhsCtx, lhsLower, x,
 				rhsCtx, rhsLower, y,
 				vectorU, vectorD);
 			Myers.getLongestCommonSubsequence(
@@ -280,7 +280,7 @@ class Myers {
 	 * Compare {@code lhs} to {@code rhs}.  Changes are compared from left
 	 * to right such that items are deleted from left, or added to right,
 	 * or just otherwise changed between them.
-	 * 
+	 *
 	 * @param   {string} lhs - The left-hand source text.
 	 * @param   {string} rhs - The right-hand source text.
 	 * @param   {object} [options={}] - Optional settings.
@@ -354,5 +354,5 @@ class Myers {
 		return changes;
 	}
 }
-
-module.exports = Myers;
+export const diff = Myers.diff;
+export default Myers;

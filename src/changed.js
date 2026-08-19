@@ -8,4 +8,4 @@ function changed(change) {
 	return false;
 }
 
-module.exports = changed;
+export default changed;

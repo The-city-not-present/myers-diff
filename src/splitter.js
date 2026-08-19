@@ -72,4 +72,4 @@ function Splitter(text, ch) {
 	}
 }
 
-module.exports = Splitter;
+export default Splitter;

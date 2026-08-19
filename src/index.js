@@ -1,9 +1,7 @@
-const { diff } = require('./myers');
-const formats = require('./formats');
-const changed = require('./changed');
+import { diff } from './myers';
+import formats from './formats';
+import changed from './changed';
 
-module.exports = {
-	diff,
-	formats,
-	changed
-};
+
+
+export { diff, formats, changed };

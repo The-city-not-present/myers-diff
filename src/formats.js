@@ -54,4 +54,4 @@ var formats = {
 	}
 }
 
-module.exports = formats;
+export default formats;
