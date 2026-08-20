@@ -2,7 +2,7 @@ import Splitter from './splitter';
 
 function getDefaultSettings() {
 	return {
-		compare: 'lines', // lines|words|chars
+		compare: 'chars', // lines|words|chars
 		ignoreWhitespace: false,
 		ignoreCase: false,
 		ignoreAccents: false
@@ -39,14 +39,16 @@ class EncodeContext {
 	constructor(encoder, text, options) {
 		let re;
 		if (text) {
-			if (options.compare === 'chars') {
+			if( options.compare === 'chars' ) {
 				// split all chars
 				re = '';
 			} else if (options.compare === 'words') {
 				// split all of the text on spaces
 				re = ' ';
-			} else { // lines (default)
+			} else if (options.compare === 'lines') {
 				re = '\n';
+			} else { // default is empty delimiter, same as chars - but also works with arrays
+				re = '';
 			}
 		}
 
@@ -61,7 +63,7 @@ class EncodeContext {
 		while ((part = split.next()) !== null) {
 			let line = part.text;
 			if (options.ignoreWhitespace) {
-				line = line.replace(/\s+/g, '');
+				line = line.replace(/\s+/g, ' ').replace(/^\s*/,'').replace(/\s*$/,'');
 			}
 			if (options.ignoreCase) {
 				line = line.toLowerCase();
@@ -314,7 +316,7 @@ class Myers {
 
 		// compare lhs/rhs codes and build a list of comparisons
 		const changes = [];
-		const compare = (options.compare === 'chars') ? 0 : 1;
+		const compare = ( (options.compare === 'chars') || !options.compare ) ? 0 : 1;
 
 		Myers.compareLCS(lhsCtx, rhsCtx, function _changeItem(item) {
 			// add context information
