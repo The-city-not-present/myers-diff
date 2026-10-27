@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { diff } = require('../src/');
+import { describe, it, expect } from 'vitest';
+import { diff } from '../src/index.js';
 
 describe('options', function() {
 	it('should ignore whitespace', function() {

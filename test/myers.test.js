@@ -1,6 +1,14 @@
-const fs = require('fs');
-const { expect } = require('chai');
-const { diff, formats, changed } = require('../src/');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { describe, it, expect } from 'vitest';
+import { diff, formats, changed } from '../src/index.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function readResource(name) {
+	return fs.readFileSync(path.join(__dirname, 'resources', name), 'utf-8');
+}
 
 describe('#diff', function() {
 	it('should throw illegal argument "lhs"', function() {
@@ -278,11 +286,11 @@ describe('#diff', function() {
 
 	it('should compare many lines that repeat', function() {
 		const changes = diff(
-			fs.readFileSync('./test/resources/moons_lhs.txt', 'utf-8'),
-			fs.readFileSync('./test/resources/moons_rhs.txt', 'utf-8')
+			readResource('moons_lhs.txt'),
+			readResource('moons_rhs.txt')
 		);
 		expect(formats.GnuNormalFormat(changes)).to.equal(
-			fs.readFileSync('./test/resources/moons.diff', 'utf-8')
+			readResource('moons.diff')
 		);
 	});
 

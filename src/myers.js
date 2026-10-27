@@ -1,8 +1,8 @@
-import Splitter from './splitter';
+import Splitter from './splitter.js';
 
 function getDefaultSettings() {
 	return {
-		compare: 'chars', // lines|words|chars
+		compare: 'lines', // lines|words|chars
 		ignoreWhitespace: false,
 		ignoreCase: false,
 		ignoreAccents: false
@@ -39,16 +39,14 @@ class EncodeContext {
 	constructor(encoder, text, options) {
 		let re;
 		if (text) {
-			if( options.compare === 'chars' ) {
+			if (options.compare === 'chars') {
 				// split all chars
 				re = '';
 			} else if (options.compare === 'words') {
 				// split all of the text on spaces
 				re = ' ';
-			} else if (options.compare === 'lines') {
+			} else { // lines (default)
 				re = '\n';
-			} else { // default is empty delimiter, same as chars - but also works with arrays
-				re = '';
 			}
 		}
 
@@ -316,7 +314,7 @@ class Myers {
 
 		// compare lhs/rhs codes and build a list of comparisons
 		const changes = [];
-		const compare = ( (options.compare === 'chars') || !options.compare ) ? 0 : 1;
+		const compare = (options.compare === 'chars') ? 0 : 1;
 
 		Myers.compareLCS(lhsCtx, rhsCtx, function _changeItem(item) {
 			// add context information

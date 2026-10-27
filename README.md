@@ -13,15 +13,15 @@ $ npm install myers-diff
 With basic usage:
 
 ```js
-const myers = require('myers-diff');
+import { diff, formats } from 'myers-diff';
 
 const lhs = 'the quick red fox jumped\nover the hairy dog';
 const rhs = 'the quick brown fox jumped\nover the lazy dog';
 
-const diff = myers.diff(lhs, rhs);
+const changes = diff(lhs, rhs);
 
-console.log(myers.formats.GnuNormalFormat(diff));
-console.log(diff);
+console.log(formats.GnuNormalFormat(changes));
+console.log(changes);
 //
 // 1,2c1,2
 // < the quick red fox jumped
@@ -34,12 +34,12 @@ console.log(diff);
 With all options:
 
 ```js
-const myers = require('myers-diff');
+import { diff } from 'myers-diff';
 
 const lhs = 'the quick red fox jumped\nover the hairy dog';
 const rhs = 'the quick brown fox jumped\nover the lazy dog';
 
-const diff = myers.diff(lhs, rhs, {
+const changes = diff(lhs, rhs, {
     compare: 'lines',
     ignoreWhitespace: false,
     ignoreCase: false,
@@ -50,7 +50,7 @@ const diff = myers.diff(lhs, rhs, {
 For building visual editors:
 
 ```js
-const { diff, changed } = require('myers-diff');
+import { diff, changed } from 'myers-diff';
 const lhs = 'the quick red fox jumped\nover the hairy dog';
 const rhs = 'the quick brown fox jumped\nover the lazy dog';
 const changes = diff(lhs, rhs);

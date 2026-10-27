@@ -1,12 +1,11 @@
 {
-    "plugins": [
-        "mocha",
-        "chai-expect"
-    ],
-    "extends": ["eslint:recommended", "plugin:mocha/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "extends": ["eslint:recommended"],
     "env": {
         "node": true,
-        "amd": true,
-        "mocha": true
+        "es6": true
     }
 }

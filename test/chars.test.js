@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { diff, changed } = require('../src/');
+import { describe, it, expect } from 'vitest';
+import { diff, changed } from '../src/index.js';
 
 describe('compare chars', function() {
 	it('should compare chars at end of string', function() {

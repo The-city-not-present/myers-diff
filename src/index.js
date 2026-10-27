@@ -1,7 +1,5 @@
-import { diff } from './myers';
-import formats from './formats';
-import changed from './changed';
-
-
+import { diff } from './myers.js';
+import formats from './formats.js';
+import changed from './changed.js';
 
 export { diff, formats, changed };
